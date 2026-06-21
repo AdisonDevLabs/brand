@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon Name | Book via WhatsApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        whatsapp: '#25D366',
+                        whatsappHover: '#1ebe57',
+                        luxuryBase: '#FAFAF9', // Warm off-white
+                        luxuryAccent: '#F4EBE8', // Soft blush
+                        luxuryDark: '#1C1917', // Soft black
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Hide scrollbar for clean horizontal scrolling on mobile galleries */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(28, 25, 23, 0.8), rgba(28, 25, 23, 0.4));
+        }
+        
+        /* SCROLL REVEAL ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-luxuryBase text-luxuryDark font-sans antialiased">
+
+    <script>
+        // --- IMPORTANT: Change this to your actual WhatsApp number with country code ---
+        const WHATSAPP_NUMBER = "2547115324447"; 
+
+        function openWhatsApp(service = null, customMessage = null) {
+            let message = customMessage;
+            
+            if (!message) {
+                if (service) {
+                    message = `Hi, I want to book a ${service}. Is it available today?`;
+                } else {
+                    message = `Hi, I would like to book an appointment. Please assist me.`;
+                }
+            }
+            
+            const encodedMessage = encodeURIComponent(message);
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            window.open(url, '_blank');
+        }
+    </script>
+
+    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <svg class="w-6 h-6 text-luxuryDark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                <span class="font-serif font-bold text-xl tracking-wide">[SalonName]</span>
+            </div>
+            <button onclick="openWhatsApp()" class="bg-whatsapp hover:bg-whatsappHover text-white px-4 py-2 rounded-full font-medium text-sm flex items-center gap-2 transition-transform active:scale-95 shadow-sm">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.391.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-5.824 4.74-10.563 10.567-10.563 5.824 0 10.563 4.74 10.563 10.563 0 5.825-4.74 10.563-10.563 10.563z"/></svg>
+                <span class="hidden sm:inline">Book on WhatsApp</span>
+                <span class="sm:hidden">Book</span>
+            </button>
+        </div>
+    </header>
+
+    <section class="relative pt-24 pb-16 md:pt-32 md:pb-24 flex items-center min-h-[100vh]">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Elegant Salon Interior" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-2xl text-white reveal">
+                <span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-sm text-sm font-medium tracking-wider mb-4">✨ Welcome to [SalonName]</span>
+                <h1 class="font-serif text-4xl md:text-6xl font-bold leading-tight mb-4">
+                    Where Beauty Meets <span class="text-luxuryAccent">Confidence</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-lg">
+                    Professional hair styling, braiding, and beauty services tailored perfectly to your unique style.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="openWhatsApp()" class="w-full sm:w-auto bg-whatsapp hover:bg-whatsappHover text-white px-8 py-4 rounded-full font-semibold text-lg flex justify-center items-center gap-2 transition-transform active:scale-95 shadow-lg">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.391.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-5.824 4.74-10.563 10.567-10.563 5.824 0 10.563 4.74 10.563 10.563 0 5.825-4.74 10.563-10.563 10.563z"/></svg>
+                        Book Appointment
+                    </button>
+                    <a href="#services" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg flex justify-center items-center transition-colors backdrop-blur-sm">
+                        View Services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 bg-luxuryBase">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4">Our Premium Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Discover our range of beauty treatments designed to make you look and feel your absolute best.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-gray-100 flex flex-col transition-transform hover:-translate-y-1 reveal">
+                    <img src="public/_.jpeg" alt="Hair Braiding" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif text-xl font-bold">Knotless Braids</h3>
+                            <span class="font-semibold text-whatsapp">From Ksh 800</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 flex-grow">Protective, pain-free braiding styles that look natural and last for weeks.</p>
+                        <button onclick="openWhatsApp('Knotless Braids')" class="w-full bg-luxuryBase hover:bg-gray-100 border border-gray-200 text-luxuryDark py-3 rounded-xl font-medium flex justify-center items-center gap-2 transition-colors">
+                             Book This Service
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-gray-100 flex flex-col transition-transform hover:-translate-y-1 reveal">
+                    <img src="public/accdcccfcbff91ccf2e820755c395317.webp" alt="Hair Styling" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif text-xl font-bold">Silk Press & Styling</h3>
+                            <span class="font-semibold text-whatsapp">From ksh 600</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 flex-grow">Get sleek, bouncy, and shiny hair with our signature silk press treatment.</p>
+                        <button onclick="openWhatsApp('Silk Press & Styling')" class="w-full bg-luxuryBase hover:bg-gray-100 border border-gray-200 text-luxuryDark py-3 rounded-xl font-medium flex justify-center items-center gap-2 transition-colors">
+                             Book This Service
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-gray-100 flex flex-col transition-transform hover:-translate-y-1 reveal">
+                    <img src="public/Soft Glam is always a good idea 🫶🏾__Save this for your next makeup inspo_Which slide is your Fave_.jpeg" alt="Makeup" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif text-xl font-bold">Glam Makeup</h3>
+                            <span class="font-semibold text-whatsapp">From ksh 500</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 flex-grow">Flawless makeup application for weddings, photoshoots, or special events.</p>
+                        <button onclick="openWhatsApp('Glam Makeup')" class="w-full bg-luxuryBase hover:bg-gray-100 border border-gray-200 text-luxuryDark py-3 rounded-xl font-medium flex justify-center items-center gap-2 transition-colors">
+                             Book This Service
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-gray-100 flex flex-col transition-transform hover:-translate-y-1 reveal">
+                    <img src="public/_ (1).jpeg" alt="Manicure" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif text-xl font-bold">Mani & Pedi</h3>
+                            <span class="font-semibold text-whatsapp">From ksh 600</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 flex-grow">Luxury nail care, acrylics, and gel polish to keep your hands and feet perfect.</p>
+                        <button onclick="openWhatsApp('Mani & Pedi')" class="w-full bg-luxuryBase hover:bg-gray-100 border border-gray-200 text-luxuryDark py-3 rounded-xl font-medium flex justify-center items-center gap-2 transition-colors">
+                             Book This Service
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.05)] border border-gray-100 flex flex-col transition-transform hover:-translate-y-1 reveal">
+                    <img src="public/83e3ce74bfe6545d891176be1166568c.jpg" alt="Hair Treatment" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif text-xl font-bold">Hair Treatment</h3>
+                            <span class="font-semibold text-whatsapp">From ksh 400</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 flex-grow">Deep conditioning and scalp therapy to restore your natural hair's health.</p>
+                        <button onclick="openWhatsApp('Hair Treatment')" class="w-full bg-luxuryBase hover:bg-gray-100 border border-gray-200 text-luxuryDark py-3 rounded-xl font-medium flex justify-center items-center gap-2 transition-colors">
+                             Book This Service
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-luxuryAccent rounded-2xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.05)] flex flex-col justify-center items-center p-8 text-center border border-pink-100 reveal">
+                    <h3 class="font-serif text-2xl font-bold mb-3 text-luxuryDark">Need Something Else?</h3>
+                    <p class="text-gray-700 text-sm mb-6">We offer custom wigs, lash extensions, and bridal packages.</p>
+                    <button onclick="openWhatsApp(null, 'Hi, can you send me your full price list and services?')" class="w-full bg-whatsapp hover:bg-whatsappHover text-white py-3 rounded-xl font-medium flex justify-center items-center gap-2 transition-colors shadow-md">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.391.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-5.824 4.74-10.563 10.567-10.563 5.824 0 10.563 4.74 10.563 10.563 0 5.825-4.74 10.563-10.563 10.563z"/></svg>
+                        Ask for Full Menu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 reveal">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold mb-2">Real Results From Our Clients</h2>
+                <p class="text-gray-600">Follow us on Instagram and Tiktok for daily transformations.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
+                <div class="aspect-[4/5] rounded-xl overflow-hidden group reveal">
+                    <img src="public/Elegant Box Braids with Top Bun and Beaded Accents.jpeg" alt="Client 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="aspect-[4/5] rounded-xl overflow-hidden group reveal">
+                    <img src="public/Soft Glam is always a good idea 🫶🏾__Save this for your next makeup inspo_Which slide is your Fave_.jpeg" alt="Client 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="aspect-[4/5] rounded-xl overflow-hidden group reveal">
+                    <img src="public/accdcccfcbff91ccf2e820755c395317.webp" alt="Client 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="aspect-[4/5] rounded-xl overflow-hidden group hidden md:block reveal">
+                    <img src="public/_.jpeg" alt="Client 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="aspect-[4/5] rounded-xl overflow-hidden group hidden md:block reveal">
+                    <img src="public/_ (1).jpeg" alt="Client 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="aspect-[4/5] rounded-xl overflow-hidden group reveal">
+                    <img src="public/83e3ce74bfe6545d891176be1166568c.jpg" alt="Client 6" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+            </div>
+
+            <div class="text-center reveal">
+                <button onclick="openWhatsApp(null, 'Hi, I saw a look in your gallery that I love! Can I book an appointment to get something similar?')" class="inline-flex items-center gap-2 bg-luxuryDark text-white px-8 py-4 rounded-full font-medium hover:bg-black transition-colors shadow-lg">
+                     I Want This Look
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-luxuryAccent/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold mb-12 text-center reveal">Why Our Clients Love Us</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm text-center reveal">
+                    <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Professional Stylists</h3>
+                    <p class="text-gray-600 text-sm">Expertly trained team dedicated to perfecting your vision.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm text-center reveal">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Affordable Pricing</h3>
+                    <p class="text-gray-600 text-sm">Premium beauty services that don't break the bank.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm text-center reveal">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Clean & Hygienic</h3>
+                    <p class="text-gray-600 text-sm">Strict sanitation protocols for a safe, relaxing environment.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm text-center reveal">
+                    <div class="w-12 h-12 bg-whatsapp/20 text-whatsapp rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Fast WhatsApp Booking</h3>
+                    <p class="text-gray-600 text-sm">No clunky apps. Just send a text and get booked instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">Visit Our Salon</h2>
+                    <p class="text-gray-600 mb-8 text-lg">We are conveniently located in the heart of the city. Walk-ins are welcome, but appointments are highly recommended!</p>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="mt-1 bg-gray-100 p-2 rounded-full">
+                                <svg class="w-5 h-5 text-luxuryDark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Address</h4>
+                                <p class="text-gray-600">123 Beauty Avenue, Style District<br>Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="mt-1 bg-gray-100 p-2 rounded-full">
+                                <svg class="w-5 h-5 text-luxuryDark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Opening Hours</h4>
+                                <p class="text-gray-600">Mon - Sat: 9:00 AM - 7:00 PM<br>Sunday: 10:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openWhatsApp(null, 'Hi, can you send me a pin for your exact location?')" class="flex-1 bg-gray-100 hover:bg-gray-200 text-luxuryDark px-6 py-3 rounded-xl font-medium flex justify-center items-center gap-2 transition-colors">
+                             Get Directions
+                        </button>
+                        <button onclick="openWhatsApp(null, 'Hi, I have a quick question about your services.')" class="flex-1 border-2 border-gray-200 hover:border-gray-300 text-luxuryDark px-6 py-3 rounded-xl font-medium flex justify-center items-center gap-2 transition-colors">
+                             Ask Anything
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gray-200 rounded-3xl h-[400px] overflow-hidden relative shadow-inner reveal">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.277484361546!2d36.814711599999995!3d-1.283333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d65bf5f71b%3A0xc02e70e2cc5f3b76!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus" width="100%" height="100%" style="border:0; filter: grayscale(20%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-luxuryDark text-white text-center px-4 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-whatsapp/20 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div class="relative z-10 max-w-3xl mx-auto reveal">
+            <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Look?</h2>
+            <p class="text-xl text-gray-300 mb-8">Send us a message on WhatsApp and book your appointment instantly.</p>
+            
+            <button onclick="openWhatsApp()" class="bg-whatsapp hover:bg-whatsappHover text-white px-10 py-5 rounded-full font-bold text-xl flex justify-center items-center gap-3 mx-auto transition-transform hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(37,211,102,0.4)]">
+                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.391.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-5.824 4.74-10.563 10.567-10.563 5.824 0 10.563 4.74 10.563 10.563 0 5.825-4.74 10.563-10.563 10.563z"/></svg>
+                Book Now on WhatsApp
+            </button>
+            <p class="mt-6 text-sm text-pink-200 font-medium tracking-wide uppercase flex justify-center items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                Limited daily slots available
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-black text-gray-500 py-8 text-center text-sm border-t border-white/10 reveal">
+        <p>© <span id="year"></span> [SalonName]. All Rights Reserved.</p>
+        <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    </footer>
+
+    <button onclick="openWhatsApp()" class="fixed bottom-6 right-6 z-50 bg-whatsapp hover:bg-whatsappHover text-white p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.4)] transition-transform hover:scale-110 active:scale-90 flex items-center justify-center animate-bounce-slow">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.391.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-5.824 4.74-10.563 10.567-10.563 5.824 0 10.563 4.74 10.563 10.563 0 5.825-4.74 10.563-10.563 10.563z"/></svg>
+    </button>
+    
+    <style>
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 3s infinite;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // Check if element is intersecting or already scrolled past (to prevent bugs on page refresh)
+                    if (entry.isIntersecting || entry.boundingClientRect.top <= 0) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                        
+                        // Remove animation classes after transition completes (800ms) 
+                        // This prevents conflicts with existing Tailwind hover states
+                        setTimeout(() => {
+                            entry.target.classList.remove('reveal', 'active');
+                        }, 800);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
